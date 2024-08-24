@@ -1,20 +1,20 @@
+const http = require("http");
 const express = require("express");
+const math = require("./math");
 
 const app = express();
-const port = process.env.PORT || 3000;
 
-app.get("/non-blocking", (req, res) => {
-  res.status(200).send("his page is non-blocking");
+app.get("/", (req, res) => {
+  return res.send("Hello!!");
 });
 
-app.get("/blocking", async (req, res) => {
-  let counter = 0;
-  for (let i = 0; i < 20000000000; i++) {
-    counter++;
-  }
-  res.status(200).send(`result is ${counter}`);
+app.get("/about", (req, res) => {
+  return res.send("About Page!!");
 });
 
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
-});
+console.log(math.add(2, 2));
+// const server = http.createServer(app);
+// server.listen(8080)
+
+//OR
+app.listen(8080);
